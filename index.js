@@ -1,13 +1,13 @@
 const express = require("express");
 const axios = require("axios");
 const app = express();
-const port = process.env.PORT || 4000;
+const port = 8090;
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
 
-app.get("/home", async (req, res) => {
+app.get("/", async (req, res) => {
   try {
     const [populerAnime, rekomendasiAnime] = await axios.all([
       axios.get("https://api.jikan.moe/v4/top/anime?limit=10"),
@@ -17,7 +17,7 @@ app.get("/home", async (req, res) => {
     const populerData = populerAnime.data.data;
     const rekomendasiData = rekomendasiAnime.data.data;
 
-    res.render("home.ejs", {
+    res.render("index.ejs", {
       populerData: populerData,
       rekomendasiData: rekomendasiData,
     });
@@ -50,6 +50,6 @@ app.get("/search", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+app.listen(port, function () {
   console.log(`Server Running on Port ${port}`);
 });
