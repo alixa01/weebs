@@ -1,0 +1,8 @@
+.my-element {
+  transition: transform 0.3s ease;
+}
+
+.my-element:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
