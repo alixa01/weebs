@@ -1,7 +1,7 @@
 const express = require("express");
 const axios = require("axios");
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -50,6 +50,6 @@ app.get("/search", async (req, res) => {
   }
 });
 
-app.listen(port, function () {
+app.listen(port, () => {
   console.log(`Server Running on Port ${port}`);
 });
